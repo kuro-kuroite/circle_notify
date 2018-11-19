@@ -44,16 +44,6 @@
     "webpack:watch": "yarn webpack --watch"
   },
   "lint-staged": {
-    "*.{css,scss,styl}": [
-      "yarn dev:ignore:all:sanitize",
-      "yarn prettier --ignore-path tmp/._prettierignore --write",
-      "git add"
-    ],
-    "*.{html,pug,slim}": [
-      "yarn dev:ignore:all:sanitize",
-      "yarn prettier --ignore-path tmp/._prettierignore --write",
-      "git add"
-    ],
     "*.js": [
       "yarn dev:ignore:all:sanitize",
       "yarn prettier --ignore-path tmp/._prettierignore --write",

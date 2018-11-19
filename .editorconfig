@@ -15,19 +15,6 @@ insert_final_newline = true
 max_line_length = 80
 trim_trailing_whitespace = true
 
-[*.{css, scss}]
-
-curly_bracket_next_line = false
-spaces_around_operators = true
-spaces_around_brackets = outside
-quote_type = auto
-
-[*.{html, slim}]
-
-spaces_around_operators = true
-spaces_around_brackets = both
-quote_type = auto
-
 [*.js]
 
 curly_bracket_next_line = false
@@ -39,14 +26,3 @@ quote_type = single
 
 max_line_length = 0
 trim_trailing_whitespace = false
-
-[*.rb]
-
-quote_type = auto
-spaces_around_brackets = both
-spaces_around_operators = true
-
-[*.py]
-
-indent_size = 4
-spaces_around_brackets = outside
