@@ -1,0 +1,14 @@
+.prettierignore
+tmp/
+
+# TODO: No parser could be inferred for file: と表示されずに，整形する方法を模索
+.editorconfig
+.eslintignore
+.gitignore
+
+# ignore files bacause webpack does uglify
+dist/
+# ignore files bacause babel does uglify
+lib/
+# igrnore because it make only by yarn
+yarn.lock

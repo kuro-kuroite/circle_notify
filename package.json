@@ -1,0 +1,94 @@
+{
+  "scripts": {
+    "babel:compile": "yarn babel src/js/**/*.js --out-dir lib --source-maps inline",
+    "babel:watch": "yarn babel src/js/**/*.js --watch --out-dir lib --source-maps inline",
+    "deploy": "NODE_ENV=production yarn webpack",
+    "dev:ignore:all": "run-p dev:ignore:*:cat",
+    "// HACK dev:ignore:all:sanitize": "& : を加えたのは，lint-staged からくるファイル名の引数を排除するため(& : path/to/file)",
+    "dev:ignore:all:sanitize": "yarn dev:ignore:all & : ",
+    "dev:ignore:eslint:cat": "cat .gitignore .prettierignore .eslintignore > tmp/._eslintignore & : ",
+    "dev:ignore:prettier:cat": "cat .gitignore .prettierignore > tmp/._prettierignore & : ",
+    "dev:watch": "yarn watch:all",
+    "eslint:fix": "yarn eslint src/js/**/*.js --fix",
+    "eslint:fix:dry": "yarn eslint src/js/**/*.js --fix-dry-run",
+    "// [add csslint:fix, csslint:fix:dry]": "can add files like css",
+    "// [describe format:lint:watch:all]": "trigger all files are formatted and linted in realtime",
+    "format:lint:watch:all": "run-p dev:ignore:all lint:watch:all",
+    "lint": "yarn lint:all",
+    "lint:all": "run-p lint:*:fix",
+    "lint:all:dry": "run-p lint:*:fix:dry",
+    "lint:config:fix": "yarn prettier:config:fix",
+    "lint:config:fix:dry": "yarn prettier:config:fix:dry",
+    "lint:js:fix": "run-s prettier:js:fix eslint:fix",
+    "lint:js:fix:dry": "run-s prettier:js:fix:dry eslint:fix:dry",
+    "// [add lint:css:fix, lint:css:fix:dry]": "can add files like css",
+    "//": "escape \"yarn lint\" for windows",
+    "lint:watch": "yarn lint:watch:all",
+    "lint:watch:all": "watch \"yarn lint:all\" .",
+    "pop-stash": "git stash && git stash pop stash@{1} && git read-tree stash && git stash drop",
+    "prettier:all": "run-p prettier:*:fix",
+    "prettier:all:dry": "run-p prettier:*:fix:dry",
+    "prettier:config:fix": "yarn prettier --write * --ignore-path tmp/._prettierignore",
+    "prettier:config:fix:dry": "yarn prettier --list-different * --ignore-path tmp/._prettierignore",
+    "prettier:js:fix": "yarn prettier --write src/js/**/*.js",
+    "prettier:js:fix:dry": "yarn prettier --list-different src/js/**/*.js",
+    "// [add prettier:css:fix prettier:css:fix:dry]": "can add files like css",
+    "prettier:watch": "yarn prettier:watch:all",
+    "prettier:watch:all": "run-p prettier:watch:*:fix",
+    "prettier:watch:config:fix": "watch \"yarn prettier:config:fix\" .",
+    "prettier:watch:js:fix": "watch \"yarn prettier:js:fix\" src/js --interval=1",
+    "stash-unstaged": "git stash save -k 'pre-linting-stash' >> /dev/null",
+    "// [add prettier:watch:css:fix]": "can add files like css",
+    "watch": "yarn watch:all",
+    "watch:all": "yarn run-p format:lint:watch:all webpack:watch",
+    "webpack:watch": "yarn webpack --watch"
+  },
+  "lint-staged": {
+    "*.{css,scss,styl}": [
+      "yarn dev:ignore:all:sanitize",
+      "yarn prettier --ignore-path tmp/._prettierignore --write",
+      "git add"
+    ],
+    "*.{html,pug,slim}": [
+      "yarn dev:ignore:all:sanitize",
+      "yarn prettier --ignore-path tmp/._prettierignore --write",
+      "git add"
+    ],
+    "*.js": [
+      "yarn dev:ignore:all:sanitize",
+      "yarn prettier --ignore-path tmp/._prettierignore --write",
+      "yarn eslint --ignore-path tmp/._eslintignore --fix",
+      "git add"
+    ],
+    "*.{json,md,yml}": [
+      "yarn dev:ignore:all:sanitize",
+      "yarn prettier --ignore-path tmp/._prettierignore --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
+    "babel-loader": "^8.0.2",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "husky": "^1.1.0",
+    "lint-staged": "^7.3.0",
+    "npm-run-all": "^4.1.3",
+    "parallelshell": "^3.0.2",
+    "prettier": "^1.14.2",
+    "watch": "^1.0.2",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0"
+  },
+  "license": "MIT"
+}
