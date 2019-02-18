@@ -1,4 +1,4 @@
 [submodule "external_project/circle_navi"]
 	path = external_project/circle_navi
 	url = https://github.com/kuro-kuroite/circle_navi.git
-	branch = feature/integrate_app
+	branch = feature/future
