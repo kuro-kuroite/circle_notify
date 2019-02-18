@@ -1,14 +1,16 @@
 .prettierignore
+# ignore tmp because this is temporary directory
 tmp/
 
-# TODO: No parser could be inferred for file: と表示されずに，整形する方法を模索
-.editorconfig
-.eslintignore
-.gitignore
+# TODO: No parser could be inferred for file:
+.*
 
-# ignore files bacause webpack does uglify
+# ignore files bacause webpack uglify files
 dist/
-# ignore files bacause babel does uglify
-lib/
+
 # igrnore because it make only by yarn
 yarn.lock
+
+# for npm-scripts
+scripts/**/*.js
+!scripts/**/*.babel.js

@@ -60,13 +60,14 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision :shell, privileged: false, inline: <<-SHELL
-    # for node-gyp
+    # for gyp-node
     sudo apt install -y python-minimal
 
     sudo add-apt-repository ppa:git-core/ppa -y
-    sudo apt update -y
-    sudo apt upgrade -y
+    sudo apt update
+    sudo apt upgrade
     sudo apt install -y build-essential git
+
     # install Node.js
     git clone https://github.com/nodenv/nodenv.git ~/.nodenv
     cd ~/.nodenv && src/configure && make -C src
@@ -84,21 +85,26 @@ Vagrant.configure("2") do |config|
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     sudo apt update && sudo apt install --no-install-recommends yarn
+
     wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O ~/.git-completion.bash
     chmod a+x ~/.git-completion.bash
+
     wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -O ~/.git-prompt.sh
     chmod a+x ~/.git-prompt.sh
     source ~/.bashrc
+
     # add git completion
     cat <<EOF >> ~/.bash_profile
 # スクリプト読み込み
 source $HOME/.git-completion.bash
 source $HOME/.git-prompt.sh
+
 # プロンプトに各種情報を表示
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
 GIT_PS1_SHOWUNTRACKEDFILES=
 GIT_PS1_SHOWSTASHSTATE=1
+
 ############### ターミナルのコマンド受付状態の表示変更
 # \\u ユーザ名
 # \\h ホスト名
@@ -109,18 +115,25 @@ GIT_PS1_SHOWSTASHSTATE=1
 # \\[ 表示させない文字列の開始
 # \\] 表示させない文字列の終了
 # \\\\$ \\$
+
 # HACK Ruby and SHELL の仕様で以下のような複雑なエスケープが必要となった
 export PS1='\\[\\033[1;32m\\]\\u\\[\\033[00m\\]:\\[\\033[1;34m\\]\\w\\[\\033[1;31m\\]\\$(__git_ps1)\\[\\033[00m\\] \\\\$ '
 ##############
 EOF
+
     source ~/.bash_profile
+
     git clone https://github.com/simonwhitaker/gibo.git ~/.gibo
     cd ~/.gibo && ./gibo update
+
     echo 'export PATH="$HOME/.gibo:$PATH"' >> ~/.bash_profile
+
     cp shell-completions/gibo-completion.bash ~/
+
     mv ~/gibo-completion.bash ~/.gibo-completion.bash
     echo 'source ~/.gibo-completion.bash' >> ~/.bash_profile
     source ~/.bash_profile
+
     cat <<EOF >> ~/.bash_profile
 git config --global core.editor vim
 EOF

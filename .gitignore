@@ -1,4 +1,4 @@
-### https://raw.github.com/github/gitignore/90cb995068518f26e3c1305401ffa9e4ae8b110b/Global/macOS.gitignore
+### macOS
 
 # General
 .DS_Store
@@ -29,7 +29,51 @@ Temporary Items
 .apdisk
 
 
-### https://raw.github.com/github/gitignore/90cb995068518f26e3c1305401ffa9e4ae8b110b/Node.gitignore
+### Windows
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+
+### Linux
+
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+
+### Node
 
 # Logs
 logs
@@ -104,34 +148,6 @@ typings/
 
 # Serverless directories
 .serverless
-### Windows
-
-# Windows thumbnail cache files
-Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
-
-# Dump file
-*.stackdump
-
-# Folder config file
-[Dd]esktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# Temporary npm script file for prettier:watch:*
-tmp/._*
 
 
 ### JetBrains
@@ -203,5 +219,13 @@ fabric.properties
 
 .idea/
 
+
+
+# for all project
+tmp
+
+
+# for deploy:sandbox
+sandbox
 
 

@@ -1,12 +1,10 @@
 # editorconfig.org
-# TODO: require to install any package which depends on your editor
-
 root = true
 
-# see these properties at https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
+# TODO: require to install any package denpendent on your editor
+# see these propaties at https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
 
 [*]
-
 charset = utf-8
 end_of_line = lf
 indent_size = 2
@@ -15,14 +13,16 @@ insert_final_newline = true
 max_line_length = 80
 trim_trailing_whitespace = true
 
-[*.js]
-
-curly_bracket_next_line = false
-spaces_around_operators = true
-spaces_around_brackets = outside
-quote_type = single
+[*.json]
+insert_final_newline = false
 
 [*.md]
-
-max_line_length = 0
+max_line_length = off
 trim_trailing_whitespace = false
+
+[**.min.*]
+insert_final_newline = false
+max_line_length = off
+
+[COMMIT_EDITMSG]
+max_line_length = off
