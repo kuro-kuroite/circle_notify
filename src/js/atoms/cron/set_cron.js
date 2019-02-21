@@ -1,41 +1,48 @@
 import '@babel/polyfill';
 import * as shell from 'shelljs';
 import { CronJob } from 'cron';
-import { DateFnsTz, configEnv } from '@kuro-kuroite/prelude';
 
-configEnv();
+export default function setCron(
+  exec = `echo \`date\` && echo willspeaking`,
+  cronUtcTime,
+) {
+  const cronTime = cronUtcTime;
+  console.log(cronUtcTime);
+  console.log(cronUtcTime);
+  console.log(cronUtcTime);
+  console.log(cronUtcTime);
+  console.log(cronUtcTime);
+  const start = false;
+  const timeZone = 'Asia/Tokyo';
+  const job = new CronJob(
+    ...[
+      // 実行したい日時 or crontab書式
+      cronTime,
 
-const { APP_PATH } = process.env;
+      // 指定時に実行したい関数
+      function onTick() {
+        // shell.exec('echo testtest!');
+        // shell.exec('echo `date` && node ./test.js');
 
-const dateFnsTZ = new DateFnsTz('JP');
+        // shell.exec(`echo \`date\` && echo willspeaking && node ${APP_PATH}`);
+        console.log(exec);
+        shell.exec(exec);
+      },
 
-export default function setCron(date, delta = 10) {
-  const zonedDateTime = dateFnsTZ.toDate(date.valueOf() - delta * 60 * 1000);
-  const cronTime = zonedDateTime;
+      // ジョブの完了または停止時に実行する関数
+      function onComplete() {
+        // eslint-disable-next-line no-console
+        console.log('onComplete!');
+      },
 
-  const job = new CronJob({
-    // 実行したい日時 or crontab書式
-    cronTime,
-
-    // 指定時に実行したい関数
-    onTick() {
-      // shell.exec('echo testtest!');
-      // shell.exec('echo `date` && node ./test.js');
-
-      shell.exec(`echo \`date\` && echo willspeaking && node ${APP_PATH}`);
-    },
-
-    // ジョブの完了または停止時に実行する関数
-    onComplete() {
-      // eslint-disable-next-line no-console
-      console.log('onComplete!');
-    },
-
-    // コンストラクタを終する前にジョブを開始するかどうか
-    start: false,
-    timeZone: 'Asia/Tokyo',
-  });
+      // コンストラクタを終する前にジョブを開始するかどうか
+      start,
+      timeZone,
+    ],
+  );
 
   // ジョブ開始
   job.start();
+
+  return job;
 }

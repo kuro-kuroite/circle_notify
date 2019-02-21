@@ -1,0 +1,5 @@
+{
+  "cronTimeCircleNaviSetConrig": "50 59 03 * * *",
+  "cronTimeCircleNaviFetchData": "50 50 03 * * *",
+  "cronTimeCircleNaviApp": "40 59 07 * * *"
+}

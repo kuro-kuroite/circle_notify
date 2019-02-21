@@ -138,5 +138,8 @@ EOF
 git config --global core.editor vim
 EOF
     source ~/.bash_profile
+
+    # 時刻同期
+    sudo service vboxadd-service start
   SHELL
 end

@@ -2,3 +2,4 @@
 	path = external_project/circle_navi
 	url = https://github.com/kuro-kuroite/circle_navi.git
 	branch = feature/future
+	ignore = dirty

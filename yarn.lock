@@ -782,9 +782,15 @@
     log-update "^2.3.0"
     strip-ansi "^3.0.1"
 
+"@kuro-kuroite/mini-googlecalendar-event@https://github.com/kuro-kuroite/mini-googlecalendar-event.git#feature/future":
+  version "0.0.1-alpha.1"
+  resolved "https://github.com/kuro-kuroite/mini-googlecalendar-event.git#f75812dcaab509be9bd3a818de41d761e45169ed"
+  dependencies:
+    "@kuro-kuroite/prelude" "https://github.com/kuro-kuroite/prelude.git#feature/future"
+
 "@kuro-kuroite/prelude@https://github.com/kuro-kuroite/prelude.git#feature/future":
   version "0.0.1-alpha.1"
-  resolved "https://github.com/kuro-kuroite/prelude.git#eaa92c0f7baa4d97eceed468e9aec59c513f9478"
+  resolved "https://github.com/kuro-kuroite/prelude.git#4a9bb8ed01f2ea07d403dff16e4876cb06dfceea"
   dependencies:
     bluebird "^3.5.3"
     command-line-args "^5.0.2"
